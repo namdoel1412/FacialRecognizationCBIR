@@ -1,0 +1,42 @@
+Ô tham khảo trang: https://batdongsan20.trustweb.vn/  nhé. Nó ko làm về trường nma thiết kế cũng tương tự
+Mục gì khó làm quá thì ô cứ bỏ qua nhé. Làm đơn giản thôi ô ạ k cần phức tạp đâu toàn thêm sửa xóa thôi ^^
+T gửi trước database với bản vp thiết kế nhé, dữ liệu mẫu thì có j t thêm nhiều nhiều sau nhé ^^
+Có gì làm xong ae đi cafe r t biếu ô chút hàng nhé =)))
+
+------------------------- Tổng quát
+ITM College yêu cầu cta làm 1 trang web để quảng bá trường học của họ và để sinh viên đăng ký vào trường.
+=> 2 actors chính: + admin   - Quản lý các mục, bài viết, xác nhận sinh viên có được vào trường hay k.
+		   + student - Đăng ký vào trường, xem trang web của trường.
+
+
+------------------------- Yêu cầu của họ (Cái này bên Ấn gửi về t dịch từ tiếng anh sang nhé ^^)
+Header gồm các link điều hướng sau : Home | Course | Student Registration | Department | Faculty | Facilities | Online Admission | Contact Us | Admin Login
+ - Home: Trang chủ ô tham khảo như cách hiển thị trong trang web t gửi ở trên nhé, mục nào ko liên quan ô cứ bỏ hết đi.
+ - Course: Chi tiết khóa học phải được nêu rõ
+ - Admission (Dky Tuyển sinh): Sẽ có form tuyển sinh cho student. Có thể tải form hoặc fill online. 
+			       Khi submitted thì sau đó student nhận được mã đăng nhập (unique registration number - Dùng luôn cái id của bảng user - thì trường username và pass rỗng và status = Inactive)
+			       và mã này được sử dụng để check tình trạng (status) nhập học của student.
+				Nếu status = active thì tức sinh viên được tuyển -> SV tiến hành chọn chuyên ngành -> 
+				Chọn chuyên ngành xong có thể xem được 
+				các khóa học (course) và các môn (subject) trong chuyên ngành đó mà sinh viên 
+				sẽ được học trong chuyên ngành mình chọn
+
+ - Department: Tất cả các chuyên ngành (Như hệ thống thông tin, công nghệ phần mềm, vv)
+ - Faculty: Tất cả các khoa (CNTT1, vv)
+ - Facilities: Cơ sở vật chất như carteen, hostel, placement center, library, vv - Cái này cho vào mục tin tức
+ - Student registration: Sau khi trúng tuyển (status = active) HS có thể dky với ID (unique regist number ở trên) để có thể cập nhật username, password cũng như cập nhật và xem các thông tin mình đã đăng ký tuyển sinh.
+ - Contact us: Nêu rõ các chi tiết liên lạc (Địa chỉ các cơ sở của trường, form feedback gửi lên trường)
+
+
+\\
+
+
+------------------------- Giải thích database:
+faculty: khoa
+department: chuyên ngành
+course: khóa học, semester: kỳ
+subject:môn học
+user, user_role, role: authen + author
+student khi đăng ký phải điền đầy đủ các thông tin, thông tin về previous education (Trường cũ)
+news: Các tin tức (Ô tham khảo phần tin tức ở trang web t gửi nhé)
+category: danh mục tin tức (Các danh mục về facilites, facultíes, departments) - 1 danh mục có nhiều tin tức, 1 tin tức cũng có thể thuộc nhiều danh mục.

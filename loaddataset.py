@@ -37,14 +37,18 @@ def load_dataset(directory):
 		print('>loaded %d examples for class: %s' % (len(faces), subdir))
 		# store
 		X.extend(faces)
-		y.extend(labels)
-	return asarray(X), asarray(y)
+		# y.extend(labels)
+    # loại bỏ return asarray(y)
+	return asarray(X)
  
-def saveFaceDataset():
+def saveFaceDataset(path, file):
   # load train dataset
-  trainX, trainy = load_dataset('archive/train/')
-  print(trainX.shape, trainy.shape)
+  # trainX, trainy = load_dataset('archive/train/')
+  trainX = load_dataset(path)
+  print(trainX.shape)
   # load test dataset
-  testX, testy = load_dataset('archive/val/')
+  # testX, testy = load_dataset('archive/val/')
   # save arrays to one file in compressed format
-  savez_compressed('5-celebrity-faces-dataset.npz', trainX, trainy, testX, testy)
+  #       ===============================
+  # savez_compressed('harrypotter.npz', trainX)
+  savez_compressed(file, trainX)

@@ -6,8 +6,8 @@ from numpy import savez_compressed
 import numpy
 from keras.models import load_model
 import pandas as pd
- 
-# get the face embedding for one face
+
+# lấy face embedding cho mỗi ảnh mặt người
 def get_embedding(model, face_pixels):
 	# scale pixel values
 	face_pixels = face_pixels.astype('float32')
@@ -21,10 +21,12 @@ def get_embedding(model, face_pixels):
 	return yhat[0]
  
 # load the face dataset
-def saveFacialFeaturesImages():
-  data = load('5-celebrity-faces-dataset.npz')
-  trainX, trainy, testX, testy = data['arr_0'], data['arr_1'], data['arr_2'], data['arr_3']
-  print('Loaded: ', trainX.shape, trainy.shape, testX.shape, testy.shape)
+def saveFacialFeaturesImages(npzFile, dataFilePath):
+  data = load(npzFile)
+  # gán trainx với array faceembbeding
+  trainX = data['arr_0']
+  # print('Loaded: ', trainX.shape, trainy.shape, testX.shape, testy.shape)
+  print('Loaded: ', trainX.shape)
   # load the facenet model
   model = load_model('facenet_keras.h5')
   print('Loaded Model')
@@ -37,7 +39,10 @@ def saveFacialFeaturesImages():
   print(newTrainX.shape)
   print(newTrainX)
   # numpy.savetxt("database/foo.csv", newTrainX, delimiter=",")
-  pd.DataFrame(newTrainX).to_csv("database/csvfiles/file.csv")
+  # ---------------------------
+  # pd.DataFrame(newTrainX).to_csv("database/csvfiles/file.csv")
+  pd.DataFrame(newTrainX).to_csv(dataFilePath)
+  # ---------------------------
   # convert each face in the test set to an embedding
   # newTestX = list()
   # for face_pixels in testX:

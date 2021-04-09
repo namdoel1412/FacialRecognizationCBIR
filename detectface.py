@@ -20,7 +20,7 @@ def extract_face(filename, required_size=(160, 160)):
 	image = image.convert('RGB')
 	# convert to array
 	pixels = asarray(image)
-	# create the detector, using default weights
+	# create the detector, using default weights(trọng số)
 	detector = MTCNN()
 	# detect faces in the image
 	results = detector.detect_faces(pixels)
@@ -39,7 +39,7 @@ def extract_face(filename, required_size=(160, 160)):
 
 # specify folder to plot
 def detectFace(folder):
-  folder = 'database/images/'
+  folder = 'database/images/Harry/'
   i = 1
   # enumerate files
   for filename in listdir(folder):

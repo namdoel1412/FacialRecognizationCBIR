@@ -45,10 +45,14 @@ def saveFaceDataset(path, file):
   # load train dataset
   # trainX, trainy = load_dataset('archive/train/')
   trainX = load_dataset(path)
+  print(trainX)
   print(trainX.shape)
+path = 'database/images/'
+file = 'harrypotter.npz'
+saveFaceDataset(path, file)
   # load test dataset
   # testX, testy = load_dataset('archive/val/')
   # save arrays to one file in compressed format
   #       ===============================
   # savez_compressed('harrypotter.npz', trainX)
-  savez_compressed(file, trainX)
+  #savez_compressed(file, trainX)
